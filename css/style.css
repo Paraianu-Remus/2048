@@ -1,0 +1,168 @@
+@import url("http://fonts.cdnfonts.com/css/bookman-old-style");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Bookman Old Style", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+  font-size: 7.5vmin;
+}
+
+h1 {
+  margin-top: -10px;
+  font-size: 7.5vmin;
+  color: white;
+}
+
+p {
+  margin-top: -20px;
+  margin-bottom: 25px;
+  font-size: 2.8vmin;
+  font-weight: bold;
+  color: white;
+}
+
+.score {
+  font-size: 3.5vmin;
+  margin-top: 1px;
+}
+.score #score {
+  font-size: 4vmin;
+  color: green;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+  grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+  background-color: #ccc;
+  gap: var(--cell-gap);
+  border-radius: 1vmin;
+  padding: var(--cell-gap);
+  position: relative;
+}
+#game-board .cell {
+  background-color: #aaa;
+  border-radius: 1vmin;
+}
+#game-board .tile {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border-radius: 1vmin;
+  top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  background-color: hsl(200, 50%, var(--background-lightness));
+  color: hsl(200, 25%, var(--text-lightness));
+  -webkit-animation: show 0.2s ease-in-out;
+          animation: show 0.2s ease-in-out;
+  transition: 0.1s ease-in-out;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup {
+  width: 300px;
+  height: 250px;
+  padding: 30px 20px;
+  background: #ddd;
+  border-radius: 10px;
+  z-index: 2;
+  text-align: center;
+  opacity: 0;
+  top: -200%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: opacity 0.3s ease-in-out, top 1s ease-in-out, transform 1s ease-in-out;
+}
+.popup > div {
+  position: relative;
+  top: 10px;
+  opacity: 0;
+}
+.popup.active {
+  opacity: 1;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.43, 1.19);
+}
+.popup.active > div {
+  top: 0;
+  opacity: 1;
+}
+.popup.active .icon {
+  transition: all 0.3s ease-in-out 0.25s;
+}
+.popup.active .title {
+  transition: all 0.3s ease-in-out 0.3s;
+}
+.popup.active .description {
+  transition: all 0.3s ease-in-out 0.35s;
+}
+.popup.active .dismiss-btn {
+  transition: all 0.3s ease-in-out 0.4s;
+}
+.popup .title {
+  margin: 5px 0px;
+  font-size: 35px;
+  font-weight: 600;
+  color: #222;
+}
+.popup .description {
+  color: #222;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  padding: 5px;
+  margin-top: 20px;
+}
+.popup .dismiss-btn {
+  margin-top: 10px;
+}
+.popup .dismiss-btn button {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 35px;
+  background: black;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.popup .dismiss-btn button:hover {
+  transform: translateY(-0.25em);
+}
+
+@-webkit-keyframes show {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+}/*# sourceMappingURL=style.css.map */
